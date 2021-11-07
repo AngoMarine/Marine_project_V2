@@ -3,6 +3,7 @@ import UserSettings from './components/UserSettings'
 import WishList from './components/WishList'
 import ShoppingCart from './components/ShoppingCart'
 
+
 export default [
     { path: '/', component: Home, name: 'Home' },
     { path: '/user-settings', component: UserSettings, name : 'UserSettings' },

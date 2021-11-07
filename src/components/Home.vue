@@ -1,10 +1,10 @@
 <template>
   <div class="home-container">
-    <div class="container px-4 px-lg-5 my-5">
-      <div class="text-center text-white">
+    <div class="container px-4 px-lg-5 ">
+      <div class="text-center ">
         <br><br>
         <h1 class="display-4 fw-bolder">Shop your dream work of art</h1>
-        <p class="lead fw-normal text-white-50 mb-0">With this shop website</p>
+        <p class="lead fw-normal  mb-0">With this shop website</p>
       </div>
     </div>
     <!-- search display -->
@@ -16,7 +16,7 @@
     <!-- cards display -->
     <div class="card-cart-container">
       <div class="card-container">
-        <div v-for="product in filteredList" class="card">
+        <div v-for="product in filteredList" :key="product.id" class="card">
 
           <div class="img-container">
             <img v-bind:src='product.img' />
@@ -35,7 +35,7 @@
                   name="checkbox"
                   v-bind:id="product.id"
                   v-model="liked"
-                  @click="setLikeCookie()"
+                  @click="setLikeCookie(), addToFavorites(product);"
               />
               <label v-bind:for="product.id">
                 <i class="fas fa-heart"></i>
@@ -70,7 +70,7 @@
 
       <!-- cart display -->
       <transition name="cart-anim">
-        <div v-if="cart.length > 0" class="shopping-cart" id="shopping-cart">
+        <div class="shopping-cart" id="shopping-cart">
           <h2>Panier</h2>
 
           <transition-group name="item-anim" tag="div" class="item-group">
@@ -123,7 +123,7 @@
 <script>
 
 import Products from "../product.js";
-
+import { serverBus } from '../main.js';
 
 export default {
   name: "Home",
@@ -195,6 +195,9 @@ export default {
     },
     cartRemoveItem(id){
       this.$delete(this.cart, id)
+    },
+    addToFavorites(product){
+      serverBus.$emit('addToFavorites', product);
     }
   },
   mounted: function() {

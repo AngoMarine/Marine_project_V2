@@ -4,7 +4,6 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-sm-4 col-md-3 item">
-
             <h3>Services</h3>
             <ul>
               <li><a href="#">Web design</a></li>
