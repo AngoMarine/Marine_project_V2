@@ -1,4 +1,4 @@
-# parine_project
+# marine_project
 
 ## Project setup
 ```
